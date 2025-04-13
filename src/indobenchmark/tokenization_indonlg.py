@@ -434,6 +434,7 @@ class IndoNLGTokenizer(PreTrainedTokenizer):
         return_attention_mask: Optional[bool] = None,
         return_tensors: Optional[Union[str, TensorType]] = None,
         verbose: bool = True,
+        padding_side: Optional[bool] = None
     ) -> BatchEncoding:
         """
         Pad a single encoded input or a batch of encoded inputs up to predefined length or to the max sequence length
@@ -490,6 +491,9 @@ class IndoNLGTokenizer(PreTrainedTokenizer):
             verbose (`bool`, *optional*, defaults to `True`):
                 Whether or not to print more information and warnings.
         """
+
+        assert padding_side is None or padding_side == "left", "Only left padding is supported for IndoNLGTokenizer for now"
+
         # If we have a list of dicts, let's convert it in a dict of lists
         # We do this to allow using this method as a collate_fn function in PyTorch Dataloader
         if isinstance(encoded_inputs, (list, tuple)) and isinstance(encoded_inputs[0], Mapping):
