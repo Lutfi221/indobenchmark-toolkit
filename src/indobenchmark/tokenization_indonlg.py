@@ -27,6 +27,8 @@ import numpy as np
 from transformers.utils import logging, to_py_obj
 from transformers.utils.generic import _is_tensorflow, _is_torch
 
+from shutil import copyfile
+
 logger = logging.get_logger(__name__)
 
 VOCAB_FILES_NAMES = {"vocab_file": "sentencepiece.bpe.model"}
